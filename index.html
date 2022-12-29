@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Модуль системы комментариев</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header"></div>
+    </header>
+    <main class="main">
+        <div class="divLeft"></div>
+        <div class="divCenter">
+            <div class="divTable">
+                <div class="divTableRow">
+                    <div class="divRow"></div>
+                    <div class="divRow"></div>
+                    <div class="divRow"></div>
+                    <div class="divRow"></div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divRow"></div>
+                    <div class="divRow"></div>
+                    <div class="divRow"></div>
+                    <div class="divRow"></div>
+                </div>
+            </div>
+            <div class="divWide"></div>
+            <div class="divLine"></div>
+            <div class="divLinks">
+                <a href="" class="divLinks_comments">Комментарии</a>
+                <a href="" class="divLinks_number">По количеству оценок</a>
+                <a href="" class="divLinks_selected">Избранное</a>
+            </div>
+            <div class="divCommentInput">
+                <div class="divAvatar"></div>
+                <div class="divCommentInputCenter">
+                    <div class="divCommentInputTop">
+                        <div class="divNickName">
+                            <p>Максим Авдеенко</p>
+                        </div>
+                        <div class="divWarning">
+                            Макс. 1000 символов
+                        </div>
+                    </div>
+                    <div class="divCommentInputBottom">
+                        <form action="main.js" class="formInput" id="commentForm">
+                            <textarea datatype="text" class="textComment" placeholder="Введите текст сообщения"
+                                      name="comment" cols="40" rows="3" maxlength="1000" required form="commentForm"></textarea>
+                            <input class="divButton" type="submit" value="Отправить" disabled>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="divCommentOutputWrapper">
+
+            </div>
+        </div>
+
+
+
+    </main>
+    <script src="./main.js"></script>
+</body>
+</html>

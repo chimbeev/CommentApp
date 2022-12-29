@@ -1,0 +1,13 @@
+{
+  "name": "CommentApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "typescript": "^4.9.4",
+    "vite": "^4.0.3"
+  }
+}
