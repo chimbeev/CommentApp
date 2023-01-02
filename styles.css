@@ -76,8 +76,8 @@
     flex-direction: row;
     height: 25px;
     align-items: baseline;
-    justify-content: start;
-    width: 75%;
+
+    width: 100%;
 }
 .divCommentInputBottom {
 
@@ -92,13 +92,23 @@
 }
 .divCommentInputCenter {
     width: 100%;
+
 }
 .textComment {
     width: 688px;
     height: 61px;
 }
+.divCommentTitle {
+    min-width: 688px;
+    margin-top: -50px;
+    display: flex;
+    flex-direction: row;
+}
 .divWarning {
-    margin-left: 62%;
+    margin-left: 50px;
+}
+.divCounter {
+    margin-left: 430px;
 }
 .divButton {
     width: 213px;

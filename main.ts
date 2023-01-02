@@ -7,12 +7,26 @@
 При нажатии кнопки "Отправить" комментарий перемещается в блок divCommentOutput
  */
 const container: HTMLElement = document.querySelector(".formInput");
-let area: HTMLElement = container.querySelector('.textComment');
-//if (area.addEventListener) {
-    area.addEventListener('input', function(evt) {
-        // event handling code for sane browsers
-        let button: HTMLElement = container.querySelector('.divButton');
-        button.removeAttribute('disabled');
-        const length = evt.target. target.value.length
-    }, false);
-//}
+
+const area = document.getElementById('comment') as HTMLInputElement | null;
+    if (area != null) {
+
+        area?.addEventListener('input', function (event) {
+            const target = event.target as HTMLInputElement;
+            const currentLength = target.value.length;
+            let button: HTMLElement = container.querySelector('.divButton');
+            button.removeAttribute('disabled');
+            const divCounter: HTMLElement = document.querySelector(".divCounter");
+            const maxLength = 1000;
+            const divWarning: HTMLElement = document.querySelector(".divWarning");
+            if (currentLength >= maxLength) {
+                divWarning.style.color = "red";
+                button.setAttribute("disabled", "true")
+                divWarning.innerHTML = "Слишком длинное сообщение";
+            } else divWarning.innerHTML = "";
+            divCounter.style.marginLeft = "500px";
+            divCounter.innerHTML = `${currentLength}/${maxLength}`;
+        })
+
+
+};
