@@ -1,3 +1,4 @@
+"use strict";
 /*скрипт должен выполнять следующее
 При начале ввода в поле ввода становиться активной кнопка "Отправить"
 При начале ввода отображается счетчик введенных символов
@@ -6,11 +7,12 @@
 и кнопка "Отправить" не активна)
 При нажатии кнопки "Отправить" комментарий перемещается в блок divCommentOutput
  */
+exports.__esModule = true;
+//import {CommentObj} from "./CommentObj.js";
+var CommentObj_1 = require("./CommentObj");
 var container = document.querySelector(".formInput");
-//const area: HTMLInputElement | null = document.getElementById("comment");
 var area = document.getElementById('comment');
 if (area != null) {
-    console.log("step1");
     area === null || area === void 0 ? void 0 : area.addEventListener('input', function (event) {
         var target = event.target;
         var currentLength = target.value.length;
@@ -31,3 +33,10 @@ if (area != null) {
     });
 }
 ;
+var areaButton = document.getElementById('divButton'); // Обработка нажатия кнопки
+areaButton.addEventListener('click', function (event) {
+    var areaList = document.getElementById('divCommentOutputWrapper');
+    var comObj = new CommentObj_1["default"]();
+    comObj.render();
+    //areaList.appendChild("comObj.")
+});

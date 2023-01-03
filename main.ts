@@ -6,6 +6,12 @@
 и кнопка "Отправить" не активна)
 При нажатии кнопки "Отправить" комментарий перемещается в блок divCommentOutput
  */
+
+//import {CommentObj} from "./CommentObj.js";
+
+
+import CommentObj from "./CommentObj";
+
 const container: HTMLElement = document.querySelector(".formInput");
 
 const area = document.getElementById('comment') as HTMLInputElement | null;
@@ -27,6 +33,12 @@ const area = document.getElementById('comment') as HTMLInputElement | null;
             divCounter.style.marginLeft = "500px";
             divCounter.innerHTML = `${currentLength}/${maxLength}`;
         })
-
-
 };
+
+const areaButton = document.getElementById('divButton') as HTMLElement; // Обработка нажатия кнопки
+areaButton.addEventListener('click', function (event) {
+    const areaList = document.getElementById('divCommentOutputWrapper') as HTMLElement;
+    const comObj  = new CommentObj();
+    comObj.render();
+    //areaList.appendChild("comObj.")
+})

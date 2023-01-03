@@ -38,7 +38,7 @@
                 <div class="divAvatar"></div>
                 <div class="divCommentInputCenter">
                     <div class="divCommentInputTop">
-                        <div class="divNickName">
+                        <div class="divNickName" id="divNickName">
                                 <p style="display: inline">Максим Авдеенко</p>
                         </div>
                         <div class="divCounter">
@@ -46,16 +46,20 @@
                         </div>
                         <div class="divWarning"></div>
                     </div>
+
+
+
                     <div class="divCommentInputBottom">
-                        <form action="main.js" class="formInput" id="commentForm">
+                        <form action="main.js" type="module" class="formInput" id="commentForm">
                             <textarea datatype="text" class="textComment" placeholder="Введите текст сообщения"
                                 name="comment" id="comment" cols="40" rows="3" required form="commentForm"></textarea>
-                            <input class="divButton" type="submit" value="Отправить" disabled>
+                            <input class="divButton" id="divButton" type="submit" value="Отправить" disabled>
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="divCommentOutputWrapper">
+            <div class="divCommentOutputWrapper" id="divCommentOutputWrapper">
+
 
             </div>
         </div>
@@ -63,6 +67,8 @@
 
 
     </main>
-    <script src="./main.js"></script>
+    <script>let exports = {};</script>
+    <script type="module" src="./CommentObj.js"></script>
+    <script type="module" src="./main.js"></script>
 </body>
 </html>
