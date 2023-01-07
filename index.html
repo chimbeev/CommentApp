@@ -34,28 +34,28 @@
                 <a href="" class="divLinks_number">По количеству оценок</a>
                 <a href="" class="divLinks_selected">Избранное</a>
             </div>
-            <div class="divCommentInput">
-                <div class="divAvatar"></div>
-                <div class="divCommentInputCenter">
-                    <div class="divCommentInputTop">
-                        <div class="divNickName" id="divNickName">
-                                <p style="display: inline"></p>
+            <form action="" type="module" class="formInput" id="commentForm">
+                <div class="divCommentInput">
+                    <div class="divAvatar"></div>
+                    <div class="divCommentInputCenter">
+                        <div class="divCommentInputTop">
+                            <div class="divNickName" id="divNickName">
+                                <textarea datatype="text" class="nickName" placeholder="Введите никнейм"
+                                          name="nickName" id="nickName" cols="20" rows="1" required form="commentForm"></textarea>
+                            </div>
+                            <div class="divCounter">
+                                    Макс. 1000 символов
+                            </div>
+                            <div class="divWarning"></div>
                         </div>
-                        <div class="divCounter">
-                                Макс. 1000 символов
-                        </div>
-                        <div class="divWarning"></div>
-                    </div>
-
-                    <div class="divCommentInputBottom">
-                        <form action="" type="module" class="formInput" id="commentForm">
+                        <div class="divCommentInputBottom">
                             <textarea datatype="text" class="textComment" placeholder="Введите текст сообщения"
-                                name="comment" id="comment" cols="40" rows="3" required form="commentForm"></textarea>
+                                name="comment" id="comment" cols="40" rows="3" required form="commentForm" disabled></textarea>
                             <input class="divButton" id="divButton" type="button" value="Отправить" disabled>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
             <div class="divCommentOutputWrapper" id="divCommentOutputWrapper">
 
 

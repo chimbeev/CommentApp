@@ -96,6 +96,13 @@
   width: 100%;
 }
 
+.divCommentInputBottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
 .textComment {
   width: 688px;
   height: 61px;
@@ -119,6 +126,8 @@
 .divButton {
   width: 213px;
   height: 61px;
+  border-radius: 5px;
+  margin-left: 10px;
 }
 
 .divNickName {

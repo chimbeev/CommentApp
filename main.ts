@@ -6,28 +6,41 @@
 и кнопка "Отправить" не активна)
 При нажатии кнопки "Отправить" комментарий перемещается в блок divCommentOutput
  */
-
-const container: HTMLElement = document.querySelector(".formInput");
-const area = document.getElementById('comment') as HTMLInputElement | null;
-    if (area != null) {
-
-        area?.addEventListener('input', function (event) {
-            const target = event.target as HTMLInputElement;
-            const currentLength = target.value.length;
-            let button: HTMLElement = container.querySelector('.divButton');
-            button.removeAttribute('disabled');
-            const divCounter: HTMLElement = document.querySelector(".divCounter");
-            const maxLength = 1000;
-            const divWarning: HTMLElement = document.querySelector(".divWarning");
-            if (currentLength >= maxLength) {
-                divWarning.style.color = "red";
-                button.setAttribute("disabled", "true")
-                divWarning.innerHTML = "Слишком длинное сообщение";
-            } else divWarning.innerHTML = "";
-            divCounter.style.marginLeft = "500px";
-            divCounter.innerHTML = `${currentLength}/${maxLength}`;
-        })
-};
+const areaNickName = document.getElementById('nickName') as HTMLInputElement | null;
+if (areaNickName != null) { //Если есть поле ввода никнейма, то
+    areaNickName?.addEventListener('input', function (event) { //Ждем событие ввода
+        let target = event.target as HTMLInputElement;
+        let currentLength = target.value.length; //считываем длину введенной строки
+        const area = document.getElementById('comment') as HTMLInputElement | null;
+        if (currentLength > 1) { //Если длина строки больше 1, то ждем ввода комментария
+            const container: HTMLElement = document.querySelector(".formInput");
+            area.removeAttribute('disabled'); //открываем для ввода комментария блок ввода
+            if (area != null) { //Ожидаем ввода комментария
+                area?.addEventListener('input', function (event) {
+                target = event.target as HTMLInputElement;
+                currentLength = target.value.length;
+                let button: HTMLElement = container.querySelector('.divButton');
+                if (currentLength > 1) { //если введено больше одного символа, то разблокируем кнопку отправить
+                    button.removeAttribute('disabled');
+                    button.style.backgroundColor = "#ABD873";
+                    button.style.borderRadius = "5px";
+                    const divCounter: HTMLElement = document.querySelector(".divCounter");
+                    const maxLength = 1000;
+                    const divWarning: HTMLElement = document.querySelector(".divWarning");
+                    if (currentLength >= maxLength) { //Если символов больше 1000, то блокируем кнопку отправить
+                        divWarning.style.color = "red";
+                        button.setAttribute("disabled", "true")
+                        button.style.backgroundColor = "#A2A2A2";
+                        divWarning.innerHTML = "Слишком длинное сообщение";
+                    } else divWarning.innerHTML = "";
+                    divCounter.style.marginLeft = "416px";
+                    divCounter.innerHTML = `${currentLength}/${maxLength}`; //Выводим счетчик символов
+                } else { button.setAttribute("disabled", "true"); //иначе блокируем кнопку
+                    button.style.backgroundColor = "#A2A2A2" }
+                })
+            };
+        } else { area.setAttribute('disabled', 'true')}; //иначе блокируем область ввода
+    })};
 
 const areaButton = document.getElementById('divButton') as HTMLElement; // Обработка нажатия кнопки
 areaButton.addEventListener('click', function (event) {

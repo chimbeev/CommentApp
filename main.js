@@ -6,26 +6,50 @@
 и кнопка "Отправить" не активна)
 При нажатии кнопки "Отправить" комментарий перемещается в блок divCommentOutput
  */
-var container = document.querySelector(".formInput");
-var area = document.getElementById('comment');
-if (area != null) {
-    area === null || area === void 0 ? void 0 : area.addEventListener('input', function (event) {
+var areaNickName = document.getElementById('nickName');
+if (areaNickName != null) { //Если есть поле ввода никнейма, то
+    areaNickName === null || areaNickName === void 0 ? void 0 : areaNickName.addEventListener('input', function (event) {
         var target = event.target;
-        var currentLength = target.value.length;
-        var button = container.querySelector('.divButton');
-        button.removeAttribute('disabled');
-        var divCounter = document.querySelector(".divCounter");
-        var maxLength = 1000;
-        var divWarning = document.querySelector(".divWarning");
-        if (currentLength >= maxLength) {
-            divWarning.style.color = "red";
-            button.setAttribute("disabled", "true");
-            divWarning.innerHTML = "Слишком длинное сообщение";
+        var currentLength = target.value.length; //считываем длину введенной строки
+        var area = document.getElementById('comment');
+        if (currentLength > 1) { //Если длина строки больше 1, то ждем ввода комментария
+            var container_1 = document.querySelector(".formInput");
+            area.removeAttribute('disabled'); //открываем для ввода комментария блок ввода
+            if (area != null) { //Ожидаем ввода комментария
+                area === null || area === void 0 ? void 0 : area.addEventListener('input', function (event) {
+                    target = event.target;
+                    currentLength = target.value.length;
+                    var button = container_1.querySelector('.divButton');
+                    if (currentLength > 1) { //если введено больше одного символа, то разблокируем кнопку отправить
+                        button.removeAttribute('disabled');
+                        button.style.backgroundColor = "#ABD873";
+                        button.style.borderRadius = "5px";
+                        var divCounter = document.querySelector(".divCounter");
+                        var maxLength = 1000;
+                        var divWarning = document.querySelector(".divWarning");
+                        if (currentLength >= maxLength) { //Если символов больше 1000, то блокируем кнопку отправить
+                            divWarning.style.color = "red";
+                            button.setAttribute("disabled", "true");
+                            button.style.backgroundColor = "#A2A2A2";
+                            divWarning.innerHTML = "Слишком длинное сообщение";
+                        }
+                        else
+                            divWarning.innerHTML = "";
+                        divCounter.style.marginLeft = "416px";
+                        divCounter.innerHTML = "".concat(currentLength, "/").concat(maxLength); //Выводим счетчик символов
+                    }
+                    else {
+                        button.setAttribute("disabled", "true"); //иначе блокируем кнопку
+                        button.style.backgroundColor = "#A2A2A2";
+                    }
+                });
+            }
+            ;
         }
-        else
-            divWarning.innerHTML = "";
-        divCounter.style.marginLeft = "500px";
-        divCounter.innerHTML = "".concat(currentLength, "/").concat(maxLength);
+        else {
+            area.setAttribute('disabled', 'true');
+        }
+        ; //иначе блокируем область ввода
     });
 }
 ;
@@ -49,7 +73,6 @@ var CommentObj = /** @class */ (function () {
         var divCommentInput = document.createElement("divCommentInput");
         divCommentInput.className = "divCommentInput";
         var divAvatar = document.createElement("divAvatar");
-        //divAvatar.style.backgroundImage = "url('https://picsum.photos/85/128')";
         divAvatar.className = "divAvatar";
         divCommentInput.appendChild(divAvatar);
         var divCommentInputCenter = document.createElement("divCommentInputCenter");
