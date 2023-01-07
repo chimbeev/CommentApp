@@ -1,133 +1,143 @@
 .header {
-    background-color: #D9D9D9;
-    height: 101px;
-    min-width: 1440px;
-
+  background-color: #D9D9D9;
+  height: 101px;
+  min-width: 1440px;
 }
+
 .main {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: row;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
 }
 
 .divLeft {
-    background-color: #D9D9D9;
-    height: 100vh;
-    min-width: 203px;
-
+  background-color: #D9D9D9;
+  height: 100vh;
+  min-width: 203px;
 }
+
 .divCenter {
-    display: flex;
-    flex-direction: column;
-    margin-left: 86px;
-    width: 1022px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 86px;
+  width: 1022px;
 }
+
 .divTable {
-    display: flex;
-    flex-direction: row;
-    background-color: white;
-
+  display: flex;
+  flex-direction: row;
+  background-color: white;
 }
+
 .divTableRow {
-    background-color: white;
-    margin-right: 48px;
-
-
+  background-color: white;
+  margin-right: 48px;
 }
+
 .divRow {
-    background-color: #D9D9D9;
-    height: 61px;
-    width: 487px;
-    margin-bottom: 30px;
+  background-color: #D9D9D9;
+  height: 61px;
+  width: 487px;
+  margin-bottom: 30px;
 }
+
 .divWide {
-    background-color: #D9D9D9;
-    height: 168px;
-    margin-top: 10px;
+  background-color: #D9D9D9;
+  height: 168px;
+  margin-top: 10px;
 }
+
 .divLine {
-    background-color: #D9D9D9;
-    height: 3px;
-    margin-top: 40px;
+  background-color: #D9D9D9;
+  height: 3px;
+  margin-top: 40px;
 }
+
 .divLinks {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: stretch;
-    margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: stretch;
+  margin-top: 25px;
 }
+
 .divLinks_comments {
-    margin-right: 150px;
+  margin-right: 150px;
 }
+
 .divLinks_number {
-    margin-right: 150px;
+  margin-right: 150px;
 }
-.divLinks_selected {
 
-}
 .divCommentInput {
-    display: flex;
-    flex-direction: row;
-    margin-top: 32px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 32px;
 }
+
 .divCommentInputTop {
-    display: flex;
-    flex-direction: row;
-    height: 25px;
-    align-items: baseline;
-
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 25px;
+  align-items: baseline;
+  width: 100%;
 }
-.divCommentInputBottom {
 
-}
 .divAvatar {
-    background-image: url("https://picsum.photos/85/128");
-    background-size: contain;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin-right: 10px;
+  background-image: url("https://picsum.photos/85/128");
+  background-size: cover;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
+
 .divCommentInputCenter {
-    width: 100%;
-
+  width: 100%;
 }
+
 .textComment {
-    width: 688px;
-    height: 61px;
+  width: 688px;
+  height: 61px;
 }
-.divCommentTitle {
-    min-width: 688px;
-    margin-top: -50px;
-    display: flex;
-    flex-direction: row;
-}
-.divWarning {
-    margin-left: 50px;
-}
-.divCounter {
-    margin-left: 430px;
-}
-.divButton {
-    width: 213px;
-    height: 61px;
 
+.divCommentTitle {
+  min-width: 688px;
+  margin-top: -50px;
+  display: flex;
+  flex-direction: row;
 }
+
+.divWarning {
+  margin-left: 50px;
+}
+
+.divCounter {
+  margin-left: 430px;
+}
+
+.divButton {
+  width: 213px;
+  height: 61px;
+}
+
 .divNickName {
-    margin-top: -50px;
+  margin-top: -50px;
 }
+
 .formInput {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
+
 .divCommentOutputWrapper {
-    display: flex;
-    flex-direction: row;
-    margin-top: 40px;
-    height: auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  height: auto;
 }
+
+/*# sourceMappingURL=styles.css.map */
