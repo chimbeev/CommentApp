@@ -99,7 +99,6 @@
 .divCommentInputBottom {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   width: 100%;
 }
 
@@ -132,6 +131,26 @@
 
 .divNickName {
   margin-top: -50px;
+}
+
+.nickName {
+  color: #122AC0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.divTimeOfComment {
+  margin-left: 15px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  opacity: 0.4;
 }
 
 .formInput {
