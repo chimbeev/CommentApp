@@ -1,3 +1,4 @@
+import {InputNickName} from "./inputNickName";
 import {InputObj} from "./inputObj.js" ;
 import {CommentObj} from "./commentObj";
 
@@ -10,8 +11,9 @@ import {CommentObj} from "./commentObj";
 При нажатии кнопки "Отправить" комментарий перемещается в блок divCommentOutput
  */
 const listOfComments = new Array(); // массив объектов-комментариев
+const rt = new InputNickName();
+const ft = new InputObj();
 
-const ft = new InputObj(); //отработка логики ввода комментария
 const areaButton = document.getElementById('divButton') as HTMLElement; // Обработка нажатия кнопки
 areaButton.addEventListener('click', function (event) {
     const comObj  = new CommentObj(); //выводим комментарий в блоке вывода комментариев
