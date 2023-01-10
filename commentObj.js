@@ -3,7 +3,8 @@ export class CommentObj {
         // Создаем объект с параметрами комментария.
         this.timeOfComment = new Date(); // сохраняем время ввода комментария.
         const elementAvatar = document.querySelector(".divAvatar");
-        this.avatar = elementAvatar === null || elementAvatar === void 0 ? void 0 : elementAvatar.getAttribute("background-image");
+        if (elementAvatar)
+            this.avatar = elementAvatar.style.backgroundImage;
         this.nickName = document.getElementById("nickName").value;
         this.textOfComment = document.getElementById("comment").value;
     }
@@ -12,6 +13,7 @@ export class CommentObj {
         divCommentInput.className = "divCommentInput";
         const divAvatar = document.createElement("divAvatar");
         divAvatar.className = "divAvatar";
+        divAvatar.style.backgroundImage = this.avatar;
         divCommentInput.appendChild(divAvatar);
         const divCommentInputCenter = document.createElement("divCommentInputCenter");
         divCommentInputCenter.className = "divCommentInputCenter";

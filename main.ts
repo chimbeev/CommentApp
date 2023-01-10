@@ -10,7 +10,8 @@ import {CommentObj} from "./commentObj";
 При нажатии кнопки "Отправить" комментарий перемещается в блок divCommentOutput
  */
 const listOfComments = new Array(); // массив объектов-комментариев
-const ft = new InputObj(); //отрисовка формы ввода комментария
+
+const ft = new InputObj(); //отработка логики ввода комментария
 const areaButton = document.getElementById('divButton') as HTMLElement; // Обработка нажатия кнопки
 areaButton.addEventListener('click', function (event) {
     const comObj  = new CommentObj(); //выводим комментарий в блоке вывода комментариев
@@ -19,6 +20,11 @@ areaButton.addEventListener('click', function (event) {
     listOfComments.push(comObj); //записать в конец массива объект
     comObj.render();
 })
+
+export function onChangeNickName() {
+    const divAvatar = document.querySelector('.divAvatar') as HTMLInputElement | null;
+    if (divAvatar) divAvatar.style.backgroundImage = "URL('https://picsum.photos/85/128')";
+}
 
 
 

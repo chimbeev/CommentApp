@@ -8,8 +8,8 @@ export class CommentObj { // Сущность, которая хранит св�
     constructor() {
         // Создаем объект с параметрами комментария.
         this.timeOfComment = new Date(); // сохраняем время ввода комментария.
-        const elementAvatar: HTMLElement | null = document.querySelector(".divAvatar");
-        this.avatar = elementAvatar?.getAttribute("background-image");
+        const elementAvatar = document.querySelector(".divAvatar") as HTMLElement | null;
+        if (elementAvatar) this.avatar = elementAvatar.style.backgroundImage;
         this.nickName = (<HTMLInputElement>document.getElementById("nickName")).value;
         this.textOfComment = (<HTMLInputElement>document.getElementById("comment")).value;
 
@@ -20,6 +20,7 @@ export class CommentObj { // Сущность, которая хранит св�
         divCommentInput.className ="divCommentInput";
         const divAvatar: HTMLElement = document.createElement("divAvatar");
         divAvatar.className = "divAvatar";
+        divAvatar.style.backgroundImage = this.avatar;
         divCommentInput.appendChild(divAvatar);
 
         const divCommentInputCenter: HTMLElement = document.createElement("divCommentInputCenter");

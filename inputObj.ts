@@ -1,17 +1,24 @@
 /* объект использующийся для ввода комментария
 
  */
+import {get} from "https";
+
 export class InputObj {
 
     constructor() {
         const areaNickName = document.getElementById('nickName') as HTMLInputElement | null;
         if (areaNickName != null) { //Если есть поле ввода никнейма, то
-            areaNickName?.addEventListener('input', function (event) { //Ждем событие ввода
+            areaNickName?.addEventListener('blur', function (event) { //Ждем событие ввода
                 let target = event.target as HTMLInputElement;
+                let resultOfSearch = localStorage.getItem(target.value);
+                const divAvatar = document.querySelector('.divAvatar') as HTMLInputElement | null;
+                if (resultOfSearch) console.log("нашел в локалсторадж", JSON.parse(resultOfSearch));
+                else
+                if (divAvatar) divAvatar.style.backgroundImage = "URL('https://picsum.photos/85/128')";
                 let currentLength = target.value.length; //считываем длину введенной строки
                 const area = document.getElementById('comment') as HTMLInputElement | null;
                 if (currentLength > 1) { //Если длина строки больше 1, то ждем ввода комментария
-                    area?.removeAttribute('disabled'); //открываем для ввода комментария блок ввода
+                  area?.removeAttribute('disabled'); //открываем для ввода комментария блок ввода
                     if (area != null) { //Ожидаем ввода комментария
                         area?.addEventListener('input', function (event) {
                             target = event.target as HTMLInputElement;
@@ -47,5 +54,9 @@ export class InputObj {
                 } else area?.setAttribute('disabled', 'true'); //иначе блокируем область ввода
             })
         };
+    }
+
+    finder() { //производит поиск пользователя в localStorage
+
     }
 }

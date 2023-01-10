@@ -28,6 +28,11 @@
                 </div>
             </div>
             <div class="divWide"></div>
+            <div class="divInputNickName">
+                <textarea datatype="text" class="inputNickName" placeholder="Введите здесь никнейм"
+                          name="inputNickName" id="inputNickName" cols="20" rows="1" required form="commentForm"></textarea>
+                <input class="divLoginButton" id="divLoginButton" type="button" value="Войти" disabled>
+            </div>
             <div class="divLine"></div>
             <div class="divLinks">
                 <a href="" class="divLinks_comments">Комментарии</a>
@@ -36,12 +41,11 @@
             </div>
             <form action="" type="module" class="formInput" id="commentForm">
                 <div class="divCommentInput">
-                    <div class="divAvatar"></div>
+                    <div class="divAvatar" id="divAvatar"></div>
                     <div class="divCommentInputCenter">
                         <div class="divCommentInputTop">
                             <div class="divNickName" id="divNickName">
-                                <textarea datatype="text" class="nickName" placeholder="Введите никнейм"
-                                          name="nickName" id="nickName" cols="20" rows="1" required form="commentForm"></textarea>
+
                             </div>
                             <div class="divCounter">
                                     Макс. 1000 символов

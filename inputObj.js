@@ -1,12 +1,15 @@
-/* объект использующийся для ввода комментария
-
- */
 export class InputObj {
     constructor() {
         const areaNickName = document.getElementById('nickName');
         if (areaNickName != null) { //Если есть поле ввода никнейма, то
-            areaNickName === null || areaNickName === void 0 ? void 0 : areaNickName.addEventListener('input', function (event) {
+            areaNickName === null || areaNickName === void 0 ? void 0 : areaNickName.addEventListener('blur', function (event) {
                 let target = event.target;
+                let resultOfSearch = localStorage.getItem(target.value);
+                const divAvatar = document.querySelector('.divAvatar');
+                if (resultOfSearch)
+                    console.log("нашел в локалсторадж", JSON.parse(resultOfSearch));
+                else if (divAvatar)
+                    divAvatar.style.backgroundImage = "URL('https://picsum.photos/85/128')";
                 let currentLength = target.value.length; //считываем длину введенной строки
                 const area = document.getElementById('comment');
                 if (currentLength > 1) { //Если длина строки больше 1, то ждем ввода комментария
@@ -53,5 +56,7 @@ export class InputObj {
             });
         }
         ;
+    }
+    finder() {
     }
 }
