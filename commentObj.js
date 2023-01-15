@@ -1,42 +1,46 @@
 export class CommentObj {
-    constructor() {
+    constructor(nickName, avatar) {
+        // Сущность появляется после нажатия кнопки Отправить. Производит отрисовку объекта.
+        this.avatar = "";
+        this.nickName = "";
         // Создаем объект с параметрами комментария.
         this.timeOfComment = new Date(); // сохраняем время ввода комментария.
-        const elementAvatar = document.querySelector(".divAvatar");
-        if (elementAvatar)
-            this.avatar = elementAvatar.style.backgroundImage;
-        this.nickName = document.getElementById("nickName").value;
+        this.nickName = nickName;
+        this.avatar = avatar;
         this.textOfComment = document.getElementById("comment").value;
     }
     render() {
-        const divCommentInput = document.createElement("divCommentInput");
+        const divAvatar = document.createElement("img");
+        let resultOfSearch = localStorage.getItem(this.nickName); //ищем в локалсторадж по никнейму
+        divAvatar.crossOrigin = "anonymous";
+        if (resultOfSearch)
+            divAvatar.src = this.avatar; //если находим, то выводим аватар
+        const divCommentInput = document.createElement("div");
         divCommentInput.className = "divCommentInput";
-        const divAvatar = document.createElement("divAvatar");
         divAvatar.className = "divAvatar";
-        divAvatar.style.backgroundImage = this.avatar;
         divCommentInput.appendChild(divAvatar);
-        const divCommentInputCenter = document.createElement("divCommentInputCenter");
+        const divCommentInputCenter = document.createElement("div");
         divCommentInputCenter.className = "divCommentInputCenter";
         divCommentInput.appendChild(divCommentInputCenter);
-        const divCommentInputTop = document.createElement("divCommentInputTop");
+        const divCommentInputTop = document.createElement("div");
         divCommentInputTop.className = "divCommentInputTop";
         divCommentInputCenter.appendChild(divCommentInputTop);
-        const divNickName = document.createElement("divNickName");
+        const divNickName = document.createElement("div");
         divNickName.innerHTML = this.nickName;
         divNickName.className = "nickName";
-        const divTimeOfComment = document.createElement("divTimeOfComment");
+        const divTimeOfComment = document.createElement("div");
         divTimeOfComment.innerHTML = this.timeOfComment.toLocaleString();
         divTimeOfComment.className = "divTimeOfComment";
-        const divCounter = document.createElement("divCounter");
-        const divWarning = document.createElement("divWarning");
+        const divCounter = document.createElement("div");
+        const divWarning = document.createElement("div");
         divCommentInputTop.appendChild(divNickName);
         divCommentInputTop.appendChild(divTimeOfComment);
         divCommentInputTop.appendChild(divCounter);
         divCommentInputTop.appendChild(divWarning);
-        const divCommentInputBottom = document.createElement("divCommentInputBottom");
+        const divCommentInputBottom = document.createElement("div");
         divCommentInputBottom.className = "divCommentInputBottom";
         divCommentInputCenter.appendChild(divCommentInputBottom);
-        const textComment = document.createElement("textComment");
+        const textComment = document.createElement("p");
         textComment.innerHTML = this.textOfComment;
         divCommentInputBottom.appendChild(textComment);
         const divOutputWrapper = document.querySelector(".divCommentOutputWrapper");

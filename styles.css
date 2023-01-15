@@ -92,7 +92,6 @@
 }
 
 .divAvatar {
-  /*background-image: url("https://picsum.photos/85/128"); */
 
   background-size: cover;
   width: 60px;
@@ -194,4 +193,3 @@
   height: auto;
 }
 
-/*# sourceMappingURL=styles.css.map */

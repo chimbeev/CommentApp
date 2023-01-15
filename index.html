@@ -31,10 +31,9 @@
             <div class="divInputNickName">
                 <textarea datatype="text" class="inputNickName" placeholder="Введите здесь никнейм"
                           name="inputNickName" id="inputNickName" cols="20" rows="1" required form="commentForm"></textarea>
-
                 <img crossorigin="anonymous" src="" id="divAvatarInput" />
-                <img src="" id="divAvatarOutput" />
                 <input class="divLoginButton" id="divLoginButton" type="button" value="Войти">
+                <button id="cleanStorageButton" type="button" value="Очистить localStorage">Очистить localStorage</button>
             </div>
             <div class="divLine"></div>
             <div class="divLinks">
@@ -44,12 +43,10 @@
             </div>
             <form action="" type="module" class="formInput" id="commentForm">
                 <div class="divCommentInput">
-                    <div class="divAvatar" id="divAvatar"></div>
+                    <img crossorigin="anonymous" src="" class="divAvatar" id="divAvatar"/>
                     <div class="divCommentInputCenter">
                         <div class="divCommentInputTop">
-                            <div class="divNickName" id="divNickName">
-
-                            </div>
+                            <div class="divNickName" id="divNickName"></div>
                             <div class="divCounter">
                                     Макс. 1000 символов
                             </div>

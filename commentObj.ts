@@ -1,56 +1,56 @@
 export class CommentObj { // Сущность, которая хранит свойства и методы комментария.
     // Сущность появляется после нажатия кнопки Отправить. Производит отрисовку объекта.
-    avatar: any;
-    nickName: any;
+    avatar: string = "";
+    nickName: string = "";
     timeOfComment: Date;
     textOfComment: string;
 
-    constructor() {
+
+    constructor(nickName: string, avatar: string) {
         // Создаем объект с параметрами комментария.
         this.timeOfComment = new Date(); // сохраняем время ввода комментария.
-        const elementAvatar = document.querySelector(".divAvatar") as HTMLElement | null;
-        if (elementAvatar) this.avatar = elementAvatar.style.backgroundImage;
-        this.nickName = (<HTMLInputElement>document.getElementById("nickName")).value;
+        this.nickName = nickName;
+        this.avatar = avatar;
         this.textOfComment = (<HTMLInputElement>document.getElementById("comment")).value;
-
     }
 
     render() {
-        const divCommentInput: HTMLElement = document.createElement("divCommentInput");
+        const divAvatar = document.createElement("img") as HTMLImageElement;
+        let resultOfSearch = localStorage.getItem(this.nickName) as string | null; //ищем в локалсторадж по никнейму
+        divAvatar.crossOrigin = "anonymous";
+        if (resultOfSearch) divAvatar.src = this.avatar; //если находим, то выводим аватар
+        const divCommentInput: HTMLElement = document.createElement("div");
         divCommentInput.className ="divCommentInput";
-        const divAvatar: HTMLElement = document.createElement("divAvatar");
         divAvatar.className = "divAvatar";
-        divAvatar.style.backgroundImage = this.avatar;
         divCommentInput.appendChild(divAvatar);
 
-        const divCommentInputCenter: HTMLElement = document.createElement("divCommentInputCenter");
+        const divCommentInputCenter: HTMLElement = document.createElement("div");
         divCommentInputCenter.className ="divCommentInputCenter";
         divCommentInput.appendChild(divCommentInputCenter);
-        const divCommentInputTop: HTMLElement = document.createElement("divCommentInputTop");
+        const divCommentInputTop: HTMLElement = document.createElement("div");
         divCommentInputTop.className = "divCommentInputTop";
         divCommentInputCenter.appendChild(divCommentInputTop);
 
-        const divNickName: HTMLElement = document.createElement("divNickName");
+        const divNickName: HTMLElement = document.createElement("div");
         divNickName.innerHTML = this.nickName;
         divNickName.className = "nickName";
-        const divTimeOfComment: HTMLElement = document.createElement("divTimeOfComment");
+        const divTimeOfComment: HTMLElement = document.createElement("div");
         divTimeOfComment.innerHTML = this.timeOfComment.toLocaleString();
         divTimeOfComment.className = "divTimeOfComment";
-        const divCounter: HTMLElement = document.createElement("divCounter");
-        const divWarning: HTMLElement = document.createElement("divWarning");
+        const divCounter: HTMLElement = document.createElement("div");
+        const divWarning: HTMLElement = document.createElement("div");
         divCommentInputTop.appendChild(divNickName);
         divCommentInputTop.appendChild(divTimeOfComment);
         divCommentInputTop.appendChild(divCounter);
         divCommentInputTop.appendChild(divWarning);
-        const divCommentInputBottom: HTMLElement = document.createElement("divCommentInputBottom");
+        const divCommentInputBottom: HTMLElement = document.createElement("div");
         divCommentInputBottom.className = "divCommentInputBottom";
         divCommentInputCenter.appendChild(divCommentInputBottom);
-        const textComment: HTMLElement | null = document.createElement("textComment");
+        const textComment: HTMLElement | null = document.createElement("p");
         textComment.innerHTML = this.textOfComment;
         divCommentInputBottom.appendChild(textComment);
         const divOutputWrapper: HTMLElement | null = document.querySelector(".divCommentOutputWrapper");
         divOutputWrapper?.appendChild(divCommentInput);
         return
-
     }
 }

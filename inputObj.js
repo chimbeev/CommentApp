@@ -1,62 +1,72 @@
+/* объект использующийся для ввода комментария
+
+ */
 export class InputObj {
-    constructor() {
-        const areaNickName = document.getElementById('nickName');
-        if (areaNickName != null) { //Если есть поле ввода никнейма, то
-            areaNickName === null || areaNickName === void 0 ? void 0 : areaNickName.addEventListener('blur', function (event) {
+    constructor(nickName, avatar) {
+        this.nickName = nickName;
+        this.avatar = avatar;
+    }
+    render() {
+        const areaNickName = document.getElementById('divNickName');
+        const divAvatar = document.querySelector('.divAvatar');
+        const area = document.getElementById('comment');
+        const areaButton = document.getElementById('divButton');
+        // Обработка нажатия кнопки добавления комментария
+        if ((this.avatar == "") || (this.nickName == "")) { //если выход, то блокируем область ввода и чистим
+            if (area) {
+                area.value = "";
+                area.setAttribute('disabled', 'true');
+            }
+            ;
+            if (areaButton)
+                areaButton.setAttribute("disabled", "true");
+            if (areaButton)
+                areaButton.style.backgroundColor = "#A2A2A2";
+            if (divAvatar)
+                divAvatar.src = "";
+            if (areaNickName)
+                areaNickName.innerHTML = "";
+            return;
+        } //при выходе из блока комментариев
+        if (divAvatar)
+            divAvatar.src = this.avatar; //передаем аватар
+        if (areaNickName)
+            areaNickName.innerHTML = this.nickName; //передаем никнейм
+        area === null || area === void 0 ? void 0 : area.removeAttribute('disabled'); //открываем для ввода комментария блок ввода
+        if (area != null) { //Ожидаем ввода комментария
+            area === null || area === void 0 ? void 0 : area.addEventListener('input', function (event) {
                 let target = event.target;
-                let resultOfSearch = localStorage.getItem(target.value);
-                const divAvatar = document.querySelector('.divAvatar');
-                if (resultOfSearch)
-                    console.log("нашел в локалсторадж", JSON.parse(resultOfSearch));
-                else if (divAvatar)
-                    divAvatar.style.backgroundImage = "URL('https://picsum.photos/85/128')";
-                let currentLength = target.value.length; //считываем длину введенной строки
-                const area = document.getElementById('comment');
-                if (currentLength > 1) { //Если длина строки больше 1, то ждем ввода комментария
-                    area === null || area === void 0 ? void 0 : area.removeAttribute('disabled'); //открываем для ввода комментария блок ввода
-                    if (area != null) { //Ожидаем ввода комментария
-                        area === null || area === void 0 ? void 0 : area.addEventListener('input', function (event) {
-                            target = event.target;
-                            currentLength = target.value.length;
-                            let button = document.querySelector('.divButton');
-                            if (button) {
-                                if (currentLength > 1) { //если введено больше одного символа, то разблокируем кнопку отправить
-                                    button.style.backgroundColor = "#ABD873";
-                                    button.style.borderRadius = "5px";
-                                    button.removeAttribute('disabled');
-                                    const maxLength = 1000;
-                                    const divWarning = document.querySelector(".divWarning");
-                                    if (divWarning) {
-                                        if (currentLength >= maxLength) { //Если символов больше 1000, то блокируем кнопку отправить
-                                            divWarning.style.color = "red";
-                                            divWarning.innerHTML = "Слишком длинное сообщение";
-                                            button.setAttribute("disabled", "true");
-                                            button.style.backgroundColor = "#A2A2A2";
-                                        }
-                                        else
-                                            divWarning.innerHTML = "";
-                                    }
-                                    const divCounter = document.querySelector(".divCounter");
-                                    if (divCounter) {
-                                        divCounter.style.marginLeft = "416px";
-                                        divCounter.innerHTML = `${currentLength}/${maxLength}`; //Выводим счетчик символов
-                                    }
-                                }
-                                else {
-                                    button.setAttribute("disabled", "true"); //иначе блокируем кнопку
-                                    button.style.backgroundColor = "#A2A2A2";
-                                }
+                let currentLength = target.value.length;
+                if (areaButton) {
+                    if (currentLength > 1) { //если введено больше одного символа, то разблокируем кнопку отправить
+                        areaButton.style.backgroundColor = "#ABD873";
+                        areaButton.style.borderRadius = "5px";
+                        areaButton.removeAttribute('disabled');
+                        const maxLength = 1000;
+                        const divWarning = document.querySelector(".divWarning");
+                        if (divWarning) {
+                            if (currentLength >= maxLength) { //Если символов больше 1000, то блокируем кнопку отправить
+                                divWarning.style.color = "red";
+                                divWarning.innerHTML = "Слишком длинное сообщение";
+                                areaButton.setAttribute("disabled", "true");
+                                areaButton.style.backgroundColor = "#A2A2A2";
                             }
-                        });
+                            else
+                                divWarning.innerHTML = "";
+                        }
+                        const divCounter = document.querySelector(".divCounter");
+                        if (divCounter) {
+                            divCounter.style.marginLeft = "416px";
+                            divCounter.innerHTML = `${currentLength}/${maxLength}`; //Выводим счетчик символов
+                        }
                     }
-                    ;
+                    else {
+                        areaButton.setAttribute("disabled", "true"); //иначе блокируем кнопку
+                        areaButton.style.backgroundColor = "#A2A2A2";
+                    }
                 }
-                else
-                    area === null || area === void 0 ? void 0 : area.setAttribute('disabled', 'true'); //иначе блокируем область ввода
             });
         }
         ;
-    }
-    finder() {
     }
 }
