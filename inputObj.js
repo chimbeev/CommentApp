@@ -1,6 +1,4 @@
-/* объект использующийся для ввода комментария
-
- */
+// объект используется для ввода комментария
 export class InputObj {
     constructor(nickName, avatar) {
         this.nickName = nickName;
@@ -30,7 +28,6 @@ export class InputObj {
         } //при выходе из блока комментариев
         if (divAvatar)
             divAvatar.src = this.avatar; //передаем аватар
-        console.log("inputObj.ts", divAvatar === null || divAvatar === void 0 ? void 0 : divAvatar.src);
         if (areaNickName)
             areaNickName.innerHTML = this.nickName; //передаем никнейм
         area === null || area === void 0 ? void 0 : area.removeAttribute('disabled'); //открываем для ввода комментария блок ввода

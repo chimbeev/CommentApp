@@ -3,7 +3,6 @@
 
 import {InputObj} from "./inputObj";
 
-
 export class InputNickName {
     nickName: string = "";
     avatar: string = "";
@@ -29,7 +28,6 @@ export class InputNickName {
                         ft.render();
                     };
                     callback(reader.result); //передаем в функцию, конвертированную в строку, картинку для сохранения в localstorage
-
                 }
                 reader.readAsDataURL(xhRequest.response);
             };
@@ -74,24 +72,16 @@ export class InputNickName {
                                   const ft = new InputObj(areaInputNickName.value, divAvatarInput.src);
                                   ft.render();
                               };
-                              console.log("нашли такого пользователя", divAvatarInput?.src)
                         } else { //если не находим, то указываем на новый аватар
                             if (divAvatarInput) {
                                 // Делаем запрос за картинкой
-
                                 toDataURL('https://picsum.photos/85/128', function (dataUrl:any) {
-                                    console.log('RESULT:', dataUrl);
                                     //записываем аватар в localstorage
                                     localStorage.setItem(areaInputNickName.value, dataUrl);
-
                                 })
-
-                                console.log(" Не нашли. загрузили новый аватар");
-                            };
+                            }
                         }
-
-
-                    }
+}
                 })
             }
         }

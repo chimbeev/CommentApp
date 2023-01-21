@@ -13,30 +13,40 @@ const rt = new InputNickName();
 const areaInputNickName = document.getElementById('inputNickName');
 const divAvatarInput = document.getElementById('divAvatarInput');
 const areaButton = document.getElementById('divButton');
+const textOfCommentArea = document.getElementById("comment");
 //При нажатии кнопки "Отправить" сохраняется новый комментарий
 areaButton.addEventListener('click', function (event) {
     if ((areaInputNickName) && (divAvatarInput)) {
-        let comObj = new CommentObj(areaInputNickName.value, divAvatarInput.src);
-        const jsonString = JSON.stringify(comObj); //чтобы сохранить объект, надо преобразовать в json string
-        localStorage.setItem(comObj.timeOfComment.toLocaleString(), jsonString); //сохранили объект-комментарий в localStorage
-        //listOfComments.push(comObj); //записать в конец массива объект
-        //
-        //
-        //localStorage.setItem(reaInputNickName.value, divAvatarInput.src);
+        let textOfComment = textOfCommentArea.value;
+        let comObj = new CommentObj(areaInputNickName.value, divAvatarInput.src, new Date(), textOfComment, 0);
+        listOfComments.push(comObj); //записать в конец массива объект
+        const jsonString = JSON.stringify(listOfComments); //чтобы сохранить объект, надо преобразовать в json string
+        localStorage.setItem('listOfComments', jsonString); //сохранили массив комментариев в localStorage
         comObj.render(); //выводим комментарий в блоке вывода комментариев
     }
 });
 //При загрузке страницы
 document.addEventListener('DOMContentLoaded', function () {
+    console.log("hello");
     // прочитаем с localStorage все комментарии и покажем на странице
     let strValue = localStorage.getItem("listOfComments");
-    console.log(strValue);
-    //if (strValue) { let storedComments: string = JSON.parse(strValue); console.log(storedComments) } ;
-    //console.log("data loaded");
-    console.log("кол-во записей", localStorage.length);
-    for (let i = 0; i < localStorage.length; i++) {
-        let key = localStorage.key(i);
-        if (key)
-            console.log(`${key}: ${localStorage.getItem(key)}`);
+    if (strValue) {
+        let storedComments = JSON.parse(strValue);
+        let elem;
+        for (let i = 0; i < storedComments.length; i++) {
+            elem = JSON.parse(JSON.stringify(storedComments[i]));
+            listOfComments.push(elem);
+        }
     }
+    listOfComments.forEach(function (element) {
+        if ((areaInputNickName) && (divAvatarInput)) {
+            let resultOfSearch = localStorage.getItem(areaInputNickName.value); //ищем в локалсторадж по никнейму
+            if (resultOfSearch) { //если находим
+                if (divAvatarInput)
+                    element.avatar = resultOfSearch;
+            } //выводим аватар
+            let comObj = new CommentObj(element.nickName, element.avatar, element.timeOfComment, element.textOfComment, element.rating);
+            comObj.render(); //выводим комментарий в блоке вывода комментариев
+        }
+    });
 });

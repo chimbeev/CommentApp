@@ -4,17 +4,15 @@ export class CommentObj { // Сущность, которая хранит св�
     nickName: string = "";
     timeOfComment: Date;
     textOfComment: string;
-    favorites: boolean = false;
     rating: number = 0;
-    relpy: boolean = false;
 
-
-    constructor(nickName: string, avatar: string) {
+    constructor(nickName: string, avatar: string, timeOfComment: Date, textOfComment: string, rating: number ) {
         // Создаем объект с параметрами комментария.
-        this.timeOfComment = new Date(); // сохраняем время ввода комментария.
+        this.timeOfComment = timeOfComment; // сохраняем время ввода комментария.
         this.nickName = nickName;
         this.avatar = avatar;
-        this.textOfComment = (<HTMLInputElement>document.getElementById("comment")).value;
+        this.textOfComment = textOfComment;
+        this.rating = rating;
     }
 
     render() {

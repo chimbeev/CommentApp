@@ -1,16 +1,15 @@
 export class CommentObj {
-    constructor(nickName, avatar) {
+    constructor(nickName, avatar, timeOfComment, textOfComment, rating) {
         // Сущность появляется после нажатия кнопки Отправить. Производит отрисовку объекта.
         this.avatar = "";
         this.nickName = "";
-        this.favorites = false;
         this.rating = 0;
-        this.relpy = false;
         // Создаем объект с параметрами комментария.
-        this.timeOfComment = new Date(); // сохраняем время ввода комментария.
+        this.timeOfComment = timeOfComment; // сохраняем время ввода комментария.
         this.nickName = nickName;
         this.avatar = avatar;
-        this.textOfComment = document.getElementById("comment").value;
+        this.textOfComment = textOfComment;
+        this.rating = rating;
     }
     render() {
         const divAvatar = document.createElement("img");

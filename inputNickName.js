@@ -89,19 +89,15 @@ export class InputNickName {
                                     ft.render();
                                 }
                                 ;
-                                console.log("нашли такого пользователя", divAvatarInput === null || divAvatarInput === void 0 ? void 0 : divAvatarInput.src);
                             }
                             else { //если не находим, то указываем на новый аватар
                                 if (divAvatarInput) {
                                     // Делаем запрос за картинкой
                                     toDataURL('https://picsum.photos/85/128', function (dataUrl) {
-                                        console.log('RESULT:', dataUrl);
                                         //записываем аватар в localstorage
                                         localStorage.setItem(areaInputNickName.value, dataUrl);
                                     });
-                                    console.log(" Не нашли. загрузили новый аватар");
                                 }
-                                ;
                             }
                         }
                     });
