@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (divAvatarInput)
                     element.avatar = resultOfSearch;
             } //выводим аватар
-            let comObj = new CommentObj(element.nickName, element.avatar, element.timeOfComment, element.textOfComment, element.rating);
+            let comObj = new CommentObj(element.nickName, element.avatar, element.timeOfComment.toLocaleString(), element.textOfComment, element.rating);
             comObj.render(); //выводим комментарий в блоке вывода комментариев
         }
     });
