@@ -3,6 +3,9 @@ export class CommentObj {
         // Сущность появляется после нажатия кнопки Отправить. Производит отрисовку объекта.
         this.avatar = "";
         this.nickName = "";
+        this.favorites = false;
+        this.rating = 0;
+        this.relpy = false;
         // Создаем объект с параметрами комментария.
         this.timeOfComment = new Date(); // сохраняем время ввода комментария.
         this.nickName = nickName;

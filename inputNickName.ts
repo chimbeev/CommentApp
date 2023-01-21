@@ -16,21 +16,35 @@ export class InputNickName {
         if (areaInputNickName) this.nickName = areaInputNickName.value;
         if (divAvatarInput) this.avatar = divAvatarInput.src;
 
-        function getBase64Image(img:any) {
-            const canvas = document.createElement("canvas");
-            canvas.width = img.width;
-            canvas.height = img.height;
-            const ctx = canvas.getContext("2d");
-            ctx?.drawImage(img, 0, 0, canvas.width, canvas.height = img.height);
-            const dataURL = canvas.toDataURL("image/jpeg");
-            return dataURL;
+        function toDataURL(url: any, callback: any) { //производит загрузку картинки аватара, показ на странице
+            let xhRequest = new XMLHttpRequest();
+            xhRequest.onload = function () {
+                let reader = new FileReader();
+                reader.onloadend = function () {
+                    if (divAvatarInput) divAvatarInput.src = URL.createObjectURL(xhRequest.response); //показываем аватар
+                    settingsAfterLogin();//настройки после входа в комментарии
+                    //вызываем объект для ввода комментария
+                    if (divAvatarInput && areaInputNickName) {
+                        const ft = new InputObj(areaInputNickName.value, divAvatarInput.src);
+                        ft.render();
+                    };
+                    callback(reader.result); //передаем в функцию, конвертированную в строку, картинку для сохранения в localstorage
+
+                }
+                reader.readAsDataURL(xhRequest.response);
+            };
+            xhRequest.open('GET', url);
+            xhRequest.responseType = 'blob';
+            xhRequest.send();
         }
 
         function exitFromCommentBlock() { //выход из блока комментариев
             if (divAvatarInput) divAvatarInput.src = "";
             if (areaInputNickName) areaInputNickName.disabled = false;
             if (divLoginButton) divLoginButton.value = 'Войти';
-            if (divAvatarInput) {const ft = new InputObj("", ""); ft.render()};
+            if (divAvatarInput) {
+                const ft = new InputObj("", "");
+                ft.render()};
         }
 
         function settingsAfterLogin() { //настройки после входа
@@ -39,42 +53,44 @@ export class InputNickName {
         }
 
         if (cleanButton) { //очистить localStorage
-            cleanButton.addEventListener('click', function (event){
+            cleanButton.addEventListener('click', function (event) {
                 localStorage.clear();
                 console.log("Очистка выполнена");
             })
         }
 
-        let imgData: string;
         if (areaInputNickName != null) { //Если есть поле ввода никнейма, то
             if (divLoginButton) { //Ожидаем нажатия кнопки
                 divLoginButton.addEventListener('click', async function (event) {
                     if (divLoginButton.value == 'Выйти') exitFromCommentBlock() //выход из блока комментирования
-                    else {
+                    else { //если нажата кнопка Войти
                         let resultOfSearch = localStorage.getItem(areaInputNickName.value) as string | null; //ищем в локалсторадж по никнейму
                         if (resultOfSearch) { //если находим
                             if (divAvatarInput) {
-                                divAvatarInput.src = resultOfSearch;
-                            };//выводим аватар
-                            console.log("нашли такого", resultOfSearch)
+                              divAvatarInput.src = resultOfSearch };//выводим аватар
+                              settingsAfterLogin();//настройки после входа в комментарии
+                              //вызываем объект для ввода комментария
+                              if (divAvatarInput) {
+                                  const ft = new InputObj(areaInputNickName.value, divAvatarInput.src);
+                                  ft.render();
+                              };
+                              console.log("нашли такого пользователя", divAvatarInput?.src)
                         } else { //если не находим, то указываем на новый аватар
                             if (divAvatarInput) {
-                                // Делаем запрос за данными
-                                const response = await fetch(`https://picsum.photos/85/128`)
-                                const responseBlob = await response.blob()
-                                divAvatarInput.src = URL.createObjectURL(responseBlob);
-                                imgData = divAvatarInput.src;
-                                localStorage.setItem(areaInputNickName.value, imgData); //записываем никнейм и аватар
-                                console.log(" Не нашли. загрузили новый аватар")
-                            }
+                                // Делаем запрос за картинкой
+
+                                toDataURL('https://picsum.photos/85/128', function (dataUrl:any) {
+                                    console.log('RESULT:', dataUrl);
+                                    //записываем аватар в localstorage
+                                    localStorage.setItem(areaInputNickName.value, dataUrl);
+
+                                })
+
+                                console.log(" Не нашли. загрузили новый аватар");
+                            };
                         }
-                        settingsAfterLogin();
-                        //вызываем объект для ввода комментария
-                        if (divAvatarInput) {
-                            const ft = new InputObj(areaInputNickName.value, divAvatarInput.src);
-                            ft.render();
-                        }
-                        ;
+
+
                     }
                 })
             }

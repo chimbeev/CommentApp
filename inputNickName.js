@@ -22,14 +22,27 @@ export class InputNickName {
             this.nickName = areaInputNickName.value;
         if (divAvatarInput)
             this.avatar = divAvatarInput.src;
-        function getBase64Image(img) {
-            const canvas = document.createElement("canvas");
-            canvas.width = img.width;
-            canvas.height = img.height;
-            const ctx = canvas.getContext("2d");
-            ctx === null || ctx === void 0 ? void 0 : ctx.drawImage(img, 0, 0, canvas.width, canvas.height = img.height);
-            const dataURL = canvas.toDataURL("image/jpeg");
-            return dataURL;
+        function toDataURL(url, callback) {
+            let xhRequest = new XMLHttpRequest();
+            xhRequest.onload = function () {
+                let reader = new FileReader();
+                reader.onloadend = function () {
+                    if (divAvatarInput)
+                        divAvatarInput.src = URL.createObjectURL(xhRequest.response); //показываем аватар
+                    settingsAfterLogin(); //настройки после входа в комментарии
+                    //вызываем объект для ввода комментария
+                    if (divAvatarInput && areaInputNickName) {
+                        const ft = new InputObj(areaInputNickName.value, divAvatarInput.src);
+                        ft.render();
+                    }
+                    ;
+                    callback(reader.result); //передаем в функцию, конвертированную в строку, картинку для сохранения в localstorage
+                };
+                reader.readAsDataURL(xhRequest.response);
+            };
+            xhRequest.open('GET', url);
+            xhRequest.responseType = 'blob';
+            xhRequest.send();
         }
         function exitFromCommentBlock() {
             if (divAvatarInput)
@@ -56,40 +69,40 @@ export class InputNickName {
                 console.log("Очистка выполнена");
             });
         }
-        let imgData;
         if (areaInputNickName != null) { //Если есть поле ввода никнейма, то
             if (divLoginButton) { //Ожидаем нажатия кнопки
                 divLoginButton.addEventListener('click', function (event) {
                     return __awaiter(this, void 0, void 0, function* () {
                         if (divLoginButton.value == 'Выйти')
                             exitFromCommentBlock(); //выход из блока комментирования
-                        else {
+                        else { //если нажата кнопка Войти
                             let resultOfSearch = localStorage.getItem(areaInputNickName.value); //ищем в локалсторадж по никнейму
                             if (resultOfSearch) { //если находим
                                 if (divAvatarInput) {
                                     divAvatarInput.src = resultOfSearch;
                                 }
                                 ; //выводим аватар
-                                console.log("нашли такого", resultOfSearch);
+                                settingsAfterLogin(); //настройки после входа в комментарии
+                                //вызываем объект для ввода комментария
+                                if (divAvatarInput) {
+                                    const ft = new InputObj(areaInputNickName.value, divAvatarInput.src);
+                                    ft.render();
+                                }
+                                ;
+                                console.log("нашли такого пользователя", divAvatarInput === null || divAvatarInput === void 0 ? void 0 : divAvatarInput.src);
                             }
                             else { //если не находим, то указываем на новый аватар
                                 if (divAvatarInput) {
-                                    // Делаем запрос за данными
-                                    const response = yield fetch(`https://picsum.photos/85/128`);
-                                    const responseBlob = yield response.blob();
-                                    divAvatarInput.src = URL.createObjectURL(responseBlob);
-                                    imgData = divAvatarInput.src;
-                                    localStorage.setItem(areaInputNickName.value, imgData); //записываем никнейм и аватар
+                                    // Делаем запрос за картинкой
+                                    toDataURL('https://picsum.photos/85/128', function (dataUrl) {
+                                        console.log('RESULT:', dataUrl);
+                                        //записываем аватар в localstorage
+                                        localStorage.setItem(areaInputNickName.value, dataUrl);
+                                    });
                                     console.log(" Не нашли. загрузили новый аватар");
                                 }
+                                ;
                             }
-                            settingsAfterLogin();
-                            //вызываем объект для ввода комментария
-                            if (divAvatarInput) {
-                                const ft = new InputObj(areaInputNickName.value, divAvatarInput.src);
-                                ft.render();
-                            }
-                            ;
                         }
                     });
                 });

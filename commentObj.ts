@@ -4,6 +4,9 @@ export class CommentObj { // Сущность, которая хранит св�
     nickName: string = "";
     timeOfComment: Date;
     textOfComment: string;
+    favorites: boolean = false;
+    rating: number = 0;
+    relpy: boolean = false;
 
 
     constructor(nickName: string, avatar: string) {
