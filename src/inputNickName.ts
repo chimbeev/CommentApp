@@ -1,9 +1,9 @@
 /*Объект для ввода никнейма; Позволяет ввести свой никнейм. Затем производит поиск в локалсторадж по никнейму.
 Если находит, то в поле avatar ставит найденное значение avatar. Если не находит, то скачивает новую картинку*/
 
-import {InputObj} from "./inputObj";
+import InputObj from 'inputObj';
 
-export class InputNickName {
+export default class InputNickName {
     nickName: string = "";
     avatar: string = "";
 

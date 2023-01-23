@@ -27,7 +27,6 @@ areaButton.addEventListener('click', function (event) {
 });
 //При загрузке страницы
 document.addEventListener('DOMContentLoaded', function () {
-    console.log("hello");
     // прочитаем с localStorage все комментарии и покажем на странице
     let strValue = localStorage.getItem("listOfComments");
     if (strValue) {

@@ -1,6 +1,6 @@
 {
   "name": "commentapp",
-  "type": "module",
+
   "exports": {
     ".": {
       "import": "./esm/index.js"
@@ -21,7 +21,9 @@
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
     "eslint": "^8.31.0",
-    "eslint-plugin-react": "^7.32.0"
+    "eslint-plugin-react": "^7.32.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   },
   "repository": {
     "type": "git",

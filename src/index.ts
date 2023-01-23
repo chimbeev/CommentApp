@@ -6,8 +6,8 @@
     и кнопка "Отправить" не активна)
     При нажатии кнопки "Отправить" комментарий перемещается в блок divCommentOutput
      */
-import {InputNickName} from "./inputNickName";
-import {CommentObj} from "./commentObj";
+import InputNickName from 'inputNickName';
+import CommentObj from 'commentObj';
 
 const listOfComments = new Array(); // массив объектов-комментариев
 const rt = new InputNickName();
@@ -30,7 +30,6 @@ areaButton.addEventListener('click', function (event) {
 
 //При загрузке страницы
 document.addEventListener('DOMContentLoaded', function () {
-    console.log("hello");
     // прочитаем с localStorage все комментарии и покажем на странице
     let strValue = localStorage.getItem("listOfComments");
     if (strValue) { let storedComments = JSON.parse(strValue);

@@ -1,6 +1,6 @@
 // объект используется для ввода комментария
 
-export class InputObj {
+export default class InputObj {
     nickName: string;
     avatar: string;
 
